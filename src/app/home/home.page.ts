@@ -79,4 +79,11 @@ export class HomePage {
     });
     this.newRating = 1;
   }
+
+  getRatingAverage(ratings) {
+    const numberOfRatings = ratings.length;
+    const ratingSum = ratings.reduce((a, b) => a + b, 0);
+    const ratingsAverage = ratingSum / numberOfRatings;
+    return ratingsAverage;
+  }
 }

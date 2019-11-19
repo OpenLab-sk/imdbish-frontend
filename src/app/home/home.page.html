@@ -27,7 +27,7 @@
 
         <ion-card-content>
           {{movie.description}}
-          <div>Movie ratings: {{movie.ratings}}</div>
+          <div>Movie ratings: {{getRatingAverage(movie.ratings)}}</div>
         </ion-card-content>
         <select [(ngModel)]="newRating">
           <option [ngValue]="1">1</option>

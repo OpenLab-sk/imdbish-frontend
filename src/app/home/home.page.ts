@@ -20,23 +20,25 @@ export class HomePage {
 
   constructor(private movieService: MovieService) {}
   addMovie() {
-    this.newMovie.id = uuid();
-    this.movies = this.movies.concat([this.newMovie]);
+    this.movieService.addMovie(this.newMovie);
+    this.movies = this.movieService.movies;
+    this.newMovie = {
+      id: "",
+      name: "",
+      director: "",
+      year: "",
+      description: "",
+      ratings: []
+    };
   }
   removeMovie(movieId) {
-    this.movies = this.movies.filter(function(movie) {
-      return movie.id !== movieId;
-    });
-    this.movies.filter(movie => movie.id !== movieId);
+    this.movieService.removeMovie(movieId);
+    this.movies = this.movieService.movies;
   }
 
   rateMovie(movieId) {
-    this.movies = this.movies.map(movie => {
-      if (movie.id === movieId) {
-        movie.ratings = movie.ratings.concat([this.newRating]);
-      }
-      return movie;
-    });
+    this.movieService.rateMovie(movieId, this.newRating);
+    this.movies = this.movieService.movies;
     this.newRating = 1;
   }
 

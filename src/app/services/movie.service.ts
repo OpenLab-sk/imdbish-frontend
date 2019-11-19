@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { uuid } from "uuidv4";
 
 const movies = [
@@ -46,4 +46,21 @@ const movies = [
 export class MovieService {
   movies = movies;
   constructor() {}
+  addMovie(movie) {
+    movie.id = uuid();
+    this.movies = this.movies.concat([movie]);
+  }
+
+  removeMovie(movieId) {
+    this.movies = this.movies.filter(movie => movie.id !== movieId);
+  }
+
+  rateMovie(movieId, rating) {
+    this.movies = this.movies.map(movie => {
+      if (movie.id === movieId) {
+        movie.ratings = movie.ratings.concat([rating]);
+      }
+      return movie;
+    });
+  }
 }

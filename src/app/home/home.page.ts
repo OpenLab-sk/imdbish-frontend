@@ -77,6 +77,6 @@ export class HomePage {
       }
       return movie;
     });
-    this.newRating = 0;
+    this.newRating = 1;
   }
 }

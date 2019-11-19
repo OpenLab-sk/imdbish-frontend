@@ -70,12 +70,13 @@ export class HomePage {
     this.movies.filter(movie => movie.id !== movieId);
   }
 
-  updateMovie(movieId) {
-    this.movies = this.movies.map(function(movie) {
+  rateMovie(movieId) {
+    this.movies = this.movies.map(movie => {
       if (movie.id === movieId) {
-        movie.ratings.push(this.newRating);
+        movie.ratings = movie.ratings.concat([this.newRating]);
       }
       return movie;
     });
+    this.newRating = 0;
   }
 }

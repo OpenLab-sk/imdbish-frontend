@@ -7,8 +7,38 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <input [(ngModel)]="newMovie.name" required placeholder="name" />
+  <input [(ngModel)]="newMovie.director" required placeholder="director" />
+  <input [(ngModel)]="newMovie.year" required placeholder="year" />
+  <input
+    [(ngModel)]="newMovie.description"
+    required
+    placeholder="description"
+  />
+  <button (click)="addMovie()">Add movie</button>
+  <div *ngFor="let movie of movies" class="ion-padding">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-header>
+          <ion-card-subtitle>{{movie.director}}</ion-card-subtitle>
+          <ion-card-subtitle>{{movie.year}}</ion-card-subtitle>
+          <ion-card-title>{{movie.name}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{movie.description}}
+          <div>Movie ratings: {{movie.ratings}}</div>
+        </ion-card-content>
+        <select [(ngModel)]="newRating">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="4">4</option>
+          <option [ngValue]="5">5</option>
+        </select>
+        <button (click)="updateMovie(movie.id)">Submit rating</button>
+        <button (click)="removeMovie(movie.id)">Delete</button>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

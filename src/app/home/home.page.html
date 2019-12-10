@@ -1,22 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      IMDBish
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <input [(ngModel)]="newMovie.name" required placeholder="name" />
-  <input [(ngModel)]="newMovie.director" required placeholder="director" />
-  <input [(ngModel)]="newMovie.year" required placeholder="year" />
-  <input
-    [(ngModel)]="newMovie.description"
-    required
-    placeholder="description"
-  />
-  <button (click)="addMovie()">Add movie</button>
-  <div *ngFor="let movie of movies" class="ion-padding">
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input value="{{newMovie.name}}" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Director</ion-label>
+          <ion-input value="{{newMovie.director}}" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Year</ion-label>
+          <ion-input value="{{newMovie.year}}" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-input value="{{newMovie.Description}}" required></ion-input>
+        </ion-item>
+        <ion-button (click)="addMovie()">Add movie</ion-button>
+      </ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <div *ngFor="let movie of movies">
     <ion-card>
       <ion-card-content>
         <ion-card-header>
@@ -27,17 +41,17 @@
 
         <ion-card-content>
           {{movie.description}}
-          <div>Movie ratings: {{getRatingAverage(movie.ratings)}}</div>
+          <!-- <div>Movie ratings: {{getRatingAverage(movie.ratings)}}</div> -->
         </ion-card-content>
-        <select [(ngModel)]="newRating">
+        <!-- <select [(ngModel)]="newRating">
           <option [ngValue]="1">1</option>
           <option [ngValue]="2">2</option>
           <option [ngValue]="3">3</option>
           <option [ngValue]="4">4</option>
           <option [ngValue]="5">5</option>
-        </select>
-        <button (click)="rateMovie(movie.id)">Submit rating</button>
-        <button (click)="removeMovie(movie.id)">Delete</button>
+        </select> -->
+        <!-- <button (click)="rateMovie(movie.id)">Submit rating</button>
+        <button (click)="removeMovie(movie.id)">Delete</button> -->
       </ion-card-content>
     </ion-card>
   </div>

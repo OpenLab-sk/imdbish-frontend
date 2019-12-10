@@ -52,8 +52,7 @@ export class MovieService {
     return this.http.get("http://localhost:8000/movies");
   }
   addMovie(movie) {
-    movie.id = uuid();
-    this.movies = this.movies.concat([movie]);
+    return this.http.post("http://localhost:8000/movies", movie);
   }
 
   removeMovie(movieId) {

@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { uuid } from "uuidv4";
 import { MovieService } from "../services/movie.service";
+
 @Component({
   selector: "app-home",
   templateUrl: "home.page.html",
@@ -10,33 +11,36 @@ export class HomePage {
   movies = [];
   newRating = 1;
   newMovie = {
-    id: "",
     name: "",
     director: "",
     year: "",
-    description: "",
-    ratings: []
+    description: ""
+    // ratings: []
   };
 
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
+    this.loadMovies();
+  }
+
+  loadMovies() {
     this.movieService.loadMovies().subscribe(movies => {
-      // console.log(response);
       this.movies = movies as any;
-      console.log(this.movies)
     });
   }
+
   addMovie() {
-    this.movieService.addMovie(this.newMovie);
-    this.movies = this.movieService.movies;
+    this.movieService.addMovie(this.newMovie).subscribe(() => {
+      this.loadMovies();
+    });
+
     this.newMovie = {
-      id: "",
       name: "",
       director: "",
       year: "",
-      description: "",
-      ratings: []
+      description: ""
+      // ratings: []
     };
   }
   removeMovie(movieId) {

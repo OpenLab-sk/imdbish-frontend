@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { uuid } from "uuidv4";
+import { HttpClient } from "@angular/common/http";
 
 const movies = [
   {
@@ -44,8 +45,12 @@ const movies = [
   providedIn: "root"
 })
 export class MovieService {
-  movies = movies;
-  constructor() {}
+  movies = [];
+  constructor(private http: HttpClient) {}
+
+  loadMovies() {
+    return this.http.get("http://localhost:8000/movies");
+  }
   addMovie(movie) {
     movie.id = uuid();
     this.movies = this.movies.concat([movie]);

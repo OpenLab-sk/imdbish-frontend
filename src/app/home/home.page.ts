@@ -7,7 +7,7 @@ import { MovieService } from "../services/movie.service";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage {
-  movies = this.movieService.movies;
+  movies = [];
   newRating = 1;
   newMovie = {
     id: "",
@@ -19,6 +19,14 @@ export class HomePage {
   };
 
   constructor(private movieService: MovieService) {}
+
+  ngOnInit() {
+    this.movieService.loadMovies().subscribe(movies => {
+      // console.log(response);
+      this.movies = movies as any;
+      console.log(this.movies)
+    });
+  }
   addMovie() {
     this.movieService.addMovie(this.newMovie);
     this.movies = this.movieService.movies;

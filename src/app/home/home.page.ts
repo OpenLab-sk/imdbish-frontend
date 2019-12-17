@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { uuid } from "uuidv4";
 import { MovieService } from "../services/movie.service";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: "app-home",
@@ -18,10 +18,14 @@ export class HomePage {
     // ratings: []
   };
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.loadMovies();
+    this.userService.login("paul.mccartney@beatles.uk", "liverpool").subscribe();
   }
 
   loadMovies() {
